@@ -4,35 +4,22 @@
   "height": 0,
   "spacing": 7,
   "modules-left": [
-    "clock#1",
     "clock#2",
     "clock#3",
-    // "temperature",
-    "custom/music",
-    "custom/scratchOutput",
-    "hyprland/submap"
+	"cpu",
+	"memory",
   ],
   "modules-center": [
     "hyprland/workspaces"
   ],
   "modules-right": [
-    "custom/wf-recorder",
-    "custom/wakapi",
-    "memory",
-    "custom/audio",
+  	"custom/easyeffects",
+	"custom/audio",
     "bluetooth",
-    "battery",
-    "custom/notif",
-    "custom/easyeffects",
-    "tray"
   ],
   "hyprland/workspaces": {
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1"
-  },
-  "clock#1": {
-    "format": "{:%a}",
-    "tooltip": false
   },
   "clock#2": {
     "format": "{:%d-%m %b}",
@@ -56,66 +43,6 @@
   "clock#3": {
     "format": "{:%I:%M %p}",
     "tooltip": false
-  },
-  "custom/wakapi": {
-    "format": " {}",
-    "interval": 600,
-    "exec": "~/.wakatime/wakatime-cli --today | awk '{print $1 \"h\", $3 \"m\"}'",
-    "on-click": "xdg-open https://wakapi.dev"
-  },
-  "temperature": {
-    "hwmon-path": "/sys/class/hwmon/hwmon6/temp1_input",
-    "interval": 5,
-    "critical-threshold": 95,
-    "format": " {temperatureC}°C"
-  },
-  "custom/scratchOutput": {
-    "return-type": "json",
-    "format": "{}",
-    "interval": 1,
-    "exec": "~/scripts/waybar/getScratchOutput.sh"
-  },
-  "custom/cal": {
-    "interval": 120,
-    "exec": "python3 ~/scripts/waybar/cal.py",
-    "on-click": "xdg-open https://calendar.google.com/calendar/u/0/r"
-  },
-  "custom/wf-recorder": {
-    "format": "{}",
-    "interval": "once",
-    "exec": "echo ' '",
-    "tooltip": "false",
-    "exec-if": "pgrep 'wf-recorder'",
-    "on-click": "exec ~/scripts/wfrecord",
-    "signal": 8
-  },
-  "custom/music": {
-    "format": "{icon}{0}",
-    "format-icons": {
-      "Paused": " "
-    },
-    "escape": true,
-    "tooltip": true,
-    "exec": "~/scripts/waybar/caway-go -b 10",
-    "return-type": "json",
-    "restart-interval": 5,
-    "on-click": "playerctl play-pause -p 'spotify, %any'",
-    "on-scroll-up": "playerctl next -p 'spotify, %any'",
-    "on-scroll-down": "playerctl previous -p 'spotify, %any'",
-    "on-click-right": "spotify",
-    "on-click-middle": "pkill spotify; pkill waybar; waybar",
-    "max-length": 15
-  },
-  "pulseaudio/slider": {
-    "min": 0,
-    "max": 100,
-    "orientation": "horizontal"
-  },
-  "pulseaudio": {
-    "format": "󰕾 {volume}",
-    "format-muted": "󰖁 {volume}",
-    "on-click-right": "pavucontrol",
-    "on-click": "pamixer -t"
   },
   "custom/audio": {
     "interval": 1,
